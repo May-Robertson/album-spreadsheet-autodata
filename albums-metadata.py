@@ -12,8 +12,6 @@ load_dotenv()
 # If modifying these scopes, delete the file token.json.
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 
-
-
 def get_values(spreadsheet_id, range_name):
     """
     Creates the batch_update the user has access to.
@@ -53,6 +51,17 @@ def get_values(spreadsheet_id, range_name):
         print(f"An error occurred: {error}")
         return error
 
+from itertools import islice
+def get_info(data):
+    d2 = dict(islice(data.items(), 10))
+    print(d2)
+    
+
+
+
+
+
+
 spreadsheet_id = os.environ.get("SPREADSHEET_ID")
 print("SPREADSHEET ID IS: ", spreadsheet_id)
 
@@ -73,9 +82,10 @@ print(type(a[7]))
 
 
 
-res = {key: value for key, value in zip(a, b)}
-
-print(res)
+data = {key: value for key, value in zip(a, b)}
+# print(data.values())
+# print(data.keys())
+get_info(data)
 
 
 
@@ -86,5 +96,16 @@ print(res)
 # then we search an API for
 #   GENRE TAGS
 #   maybe duration and numnber of tracks idk lets just see whats there
+
+
+# FROM SPOTIFY API
+# album type
+# total tracks
+# Release date
+# Genres
+
+# idk if i want these but maybe
+# label
+# popularity
 
 # lastfm tags? lets see if spotify has album tags too
