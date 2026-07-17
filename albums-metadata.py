@@ -53,14 +53,32 @@ def get_values(spreadsheet_id, range_name):
         print(f"An error occurred: {error}")
         return error
 
-
-
-
 spreadsheet_id = os.environ.get("SPREADSHEET_ID")
 print("SPREADSHEET ID IS: ", spreadsheet_id)
-result = get_values(spreadsheet_id, "A:A")
-print(result)
-# get_values(spreadsheet_id, "B:B")
+
+# ALBUM NAMES
+albums_dict = get_values(spreadsheet_id, "A:A")
+
+# ARTIST NAMES
+artists_dict = get_values(spreadsheet_id, "B:B")
+
+# (['range', 'majorDimension', 'values'])
+print(albums_dict['values'][7])
+
+
+a = list(map(" ".join,albums_dict['values']))
+b = list(map(" ".join,artists_dict['values']))
+
+print(type(a[7]))
+
+
+
+res = {key: value for key, value in zip(a, b)}
+
+print(res)
+
+
+
 
 
 
